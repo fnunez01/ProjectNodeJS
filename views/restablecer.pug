@@ -1,0 +1,26 @@
+include partials/header
+
+block content
+
+  if locals.mensajes
+                    .alertas
+                        each categoria in Object.keys(locals.mensajes)
+                            each error in mensajes[categoria]
+                                .alerta(class=`${categoria}`)
+                                    p=error  
+                                    
+  form#idFormulario.form-register(method="POST" action="/restablecer")
+    h2.form__titulo Restablecer
+    .container-inputs
+      .campo
+        label(for="email") E-mail:
+        input(type="text" name="email" placeholder="Tu Email" value= email)
+      
+      #idRespuesta.clsRespuesta
+            
+        .campo.enviar
+                    input.IdBoton.btnEnviar(type="submit" value="restablecer")
+        .campo.acciones
+        a(href="/iniciar-sesion") Ya la Recordé, Volver al Inicio de Sesión
+        
+  script(src="/js/javascript.js")

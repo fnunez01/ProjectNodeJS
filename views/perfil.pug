@@ -1,0 +1,88 @@
+extends layout
+
+block content
+
+  main.container(role='main')  
+     
+    
+    p.lead
+      | Mi currículum
+
+    .container
+    
+      
+    .row
+      .col-md-12
+        
+        form#usuarios(action='perfil/:id' method="POST")
+         .form-group
+          //img(src="./img/profile.png", class="float-center rounded-circle mr-2") 
+         .form-group
+          label(for='nombre')
+           strong Nombres
+          input#nya.form-control(type='text' name="nombre" value=usuarios.nombre, required)
+          
+          .form-group
+          label(for='apellido')
+           strong Apellidos
+          input#nya.form-control(type='text' name="apellido" value=usuarios.apellido  placeholder='Ingresa tus Apellidos', required)
+          
+         .form-group
+          label(for='documento')
+           strong Numero de identificación
+          input#email.form-control(type='text' name="documento" value=usuarios.documento  placeholder='Ingresa tu numero de identificación', required)
+          
+          .form-group
+          p
+            | Género:
+            br
+            label
+                input(type='radio' name='genero' value='masculino')
+                |  Masculino
+            br
+            label
+                input(type='radio' name='genero' value='femenino')
+                |  Femenino
+          .form-group
+          label(for='Direccion')
+           strong Direccion
+          input#idDireccion.input-100.texto(type="text" name="direccion" value=usuarios.direccion placeholder="Dirección" maxlength="50", required='')
+          
+          .form-group
+          label(for='telefono')
+           strong Telefono
+          input#idTelefono.input-100.texto(type="text" name="telefono" value=usuarios.telefono placeholder="Telefono" maxlength="10", required='')
+
+          .form-group
+          label(for='edad')
+           strong Edad
+          input#idTelefono.input-100.texto(type="text" name="edad" value=usuarios.edad placeholder="Edad" maxlength="10", required='')
+
+
+          br
+          label
+                |PERFIL PROFESIONAL
+          br
+          .form-group
+          label(for='titulo')
+           strong Cargo o titulo
+          input#nya.form-control(type='text' name="titulo" value=usuarios.titulo placeholder='Cargo o titulo', required)
+          .form-group
+          label(for='titulo')
+           strong Descripción breve de tu perfil profesional
+          textarea#comment.form-control(rows='5', value=usuarios.descripcion name="descripcion" required)          
+          br                 
+
+          //button.btn.btn-primary(type='submit') Guardar
+          input#idBoton.btnEnviar.texto(type="submit" name="btnGuardar" value="Guardar")
+          //input.btn.btn-success(type='submit', value=`${usuarios.nombre, usuarios.apellido, usuarios.documento, usuarios.telefono, usuarios.direccion, usuarios.titulo, usuarios.descripcion? 'Editar': 'Guardar'}`, class='boton')
+
+
+    hr
+
+  footer
+  .container
+    div(align='center')
+      | 
+      a Web de trabajo
+

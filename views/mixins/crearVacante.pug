@@ -1,0 +1,25 @@
+mixin crearVacante(vacante = {})
+    .table-wrapper
+        .table-title
+            .row
+                .col-sm-6
+                    h2=nombrePagina
+                .col-sm-6 
+        .col-sm-4.pull-right    
+            
+        form#vacante(action=`/nuevaVacante/${vacante.codigo || ''}` method="POST")
+            .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true')   
+            .modal-body
+            .form-group
+                label Código
+                input#name.form-control(type='text', value=vacante.codigo, name='codigo', required='')
+            .form-group
+                label Nombre
+                input#name.form-control(type='text', value=vacante.nombre, name='nombre', required='')
+            .form-group
+                label Categoría
+                input#category.form-control(type='text', value=vacante.categoria, name='categoria', required='')    
+            a.btn.btn-default(href='/vacante') Cancelar
+            input.btn.btn-success(type='submit', value=`${vacante.codigo, vacante.nombre, vacante.categoria ? 'Editar': 'Agregar'}`, class='boton')
+    script(src="/dist/bundle.js")

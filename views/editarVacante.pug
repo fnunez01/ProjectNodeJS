@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    .container
+        
+        .table-wrapper
+                .table-title
+                    .row
+                        .col-sm-6
+                            h2
+                                | Editar 
+                                b Vacantes
+                h1 #{nombrePagina} - #{vacante.nombre}
+                    form#requisitos(action=`/vacantes/${vacante.url}` method="POST")
+                        .modal-header
+                        button.close(type='button', data-dismiss='modal', aria-hidden='true')   
+                        .modal-body
+                        .form-group
+                            label(for="requisito") Requisito
+                            input#name.form-control(type='text', name='requisito', placeholder="Ingrese el requisito de la vacante" required='')
+                        input.btn.btn-success(type='submit', value='Agregar', class='boton')
+                        br
+                        .modal-header
+                        br
+                        .listado-pendientes
+                            ul
+                              if requisitos.length
+                                each requisito in requisitos
+                                    li.requisito(data-requisito=requisito.codigo)
+                                        p=requisito.requisito
+                                        .acciones
+                                            if requisito.estado
+                                                i.far.fa-check-circle.completo
+                                            else
+                                                i.far.fa-check-circle
+                                            i.fas.fa-trash
+                              else
+                                p No hay requisitos de la vacante!
+                        br
+                    //pre= vardump(requisitos)
+                    .avance
+                        h2 Avance de requisitos
+                        #barra-avance.barra-avance
+                            #porcentaje.porcentaje
+                    .modal-header
+                    br
+                    .contenedor-acciones
+                            a.btn.btn-info(href=`/vacante/editar/${vacante.codigo}` class="boton") Editar Vacante
+                            a.btn.btn-danger(data-vacantes-url=vacante.url type="button" class="boton eliminar") Eliminar Vacante
+                             
+                

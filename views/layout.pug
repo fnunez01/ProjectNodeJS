@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+      include partials/header
+  body
+      
+    nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
+      a.navbar-brand(href='/') MI TRABAJO
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarCollapse.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href='/')
+              | Home 
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link(href='vacante') Vacantes
+          li.nav-item
+            a.nav-link(href='servicios') Servicios
+          li.nav-item
+            a.nav-link(href='contacto') Contacto
+          li.nav-item
+            a.nav-link(href='nosotros') Nosotros
+          
+    
+        form.form-inline.mt-2.mt-md-0.barra
+          input.form-control.mr-sm-2(type='text' placeholder='Buscar' aria-label='Buscar')
+          button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Buscar  
+          a.btn.btn.btn-outline-success.my-2.my-sm-0(href="perfil") Mi Perfil        
+          a.btn.btn.btn-outline-success.my-2.my-sm-0(href="/cerrar-sesion") Cerrar Sesión
+    
+    block content 
+  script(src="/dist/bundle.js")
+      link(rel='stylesheet', href='/js/jquery.min.js')
+      link(rel='stylesheet', href='/js/popper.js')
+      link(rel='stylesheet', href='/js/bootstrap.min.js')

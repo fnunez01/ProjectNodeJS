@@ -1,0 +1,43 @@
+extends layout
+
+block content
+
+  main.container(role='main')
+    .shop
+      .shop-img
+          img(src="./img/banner-index1.jpg", alt="") 
+      .shop-body
+        h1.titulo Necesitas trabajo?
+        p.lead
+          | Aplica a las vacantes que tenemos para ti
+        a.btn.btn-lg.btn-secondary.active(href='vacante' role='button') Vacantes &raquo;
+      
+    .container
+      .row
+        .col-md-4
+          h2 Registro gratuito
+          p
+            | Puedes obtener tu cuenta totalmente gratis para hacer uso de las oportunidades que brinda nuestro sitio web.
+          p
+            a.btn.btn-secondary(href='#' role='button') Ver más &raquo;
+        .col-md-4
+          h2 Vacantes
+          p
+            | Encuentra las mejores vacantes, en las mejores empresas.
+          p
+            a.btn.btn-secondary(href='vacante' role='button') Ver más &raquo;
+        .col-md-4
+          h2 Empresas
+          p
+            | Te damos la oportunidad de encontrar los mejores profesionales.
+          p
+            a.btn.btn-secondary(href='#' role='button') Ver más &raquo;
+      hr
+
+    footer
+    .container
+      div(align='center')
+        |
+        a Web de trabajo
+      
+

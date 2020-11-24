@@ -1,0 +1,24 @@
+include partials/header
+
+block content
+  if error
+                  p.alerta.error= error
+  form#idFormulario.form-register(method="POST" action="/iniciar-sesion")
+    h2.form__titulo Iniciar sesion
+    .container-inputs
+      .campo
+        label(for="email") E-mail:
+        input(type="text" name="email" placeholder="Tu Email" value= email)
+      .campo  
+        label(for="password") Password:
+        input(type="password" name="password" placeholder="Tu Password" value= password)
+      #idRespuesta.clsRespuesta
+        p
+          | Estoy de acuerdo con 
+          a(href="#") Terminos y Condiciones        
+        input.IdBoton.btnEnviar(type="submit" value="Iniciar Sesión")
+        p.form__link
+          a(href="crear-cuenta") ¿No tienes cuenta?... Regístrate aquí
+        p
+          a(href="/restablecer") ¿Olvidaste tu Password?
+  script(src="/js/javascript.js")

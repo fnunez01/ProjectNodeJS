@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    .container
+        .table-wrapper
+            .table-title
+                .row
+                    .col-sm-6
+                        h2
+                            | Administrar 
+                            b Vacantes
+                    .col-sm-6
+                        a.btn.btn-success(href='nuevaVacante')
+                            i.material-icons &#xE147;
+                            span Agregar nueva vacante
+                        //-nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
+                            a.btn.btn.btn-outline-success.my-2.my-sm-0(href='nuevaVacante') Nueva vacante
+            .row
+                .col-md-4
+                    h2 Código
+                    ul.navbar-nav.mr-auto
+                        if(vacantes)
+                            each vacante in vacantes
+                                li.nav-item 
+                                    a.nav-link(href=`/vacantes/${vacante.url}`)= vacante.codigo
+
+                .col-md-4
+                    h2 Nombre
+                    ul.navbar-nav.mr-auto
+                        if(vacantes)
+                            each vacante in vacantes
+                                li.nav-item 
+                                    a.nav-link(href=`/vacantes/${vacante.url}`)= vacante.nombre
+    
+                .col-md-4
+                    h2 Categoría
+                    ul.navbar-nav.mr-auto
+                        if(vacantes)
+                            each vacante in vacantes
+                                li.nav-item 
+                                    a.nav-link(href=`/vacantes/${vacante.url}`)= vacante.categoria
+    script(src="/dist/bundle.js")
+            hr
+    
+               

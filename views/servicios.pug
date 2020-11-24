@@ -1,0 +1,55 @@
+extends layout
+
+block content
+
+  main.container(role='main')
+    .shop
+      .shop-img
+          img(src="./img/banner-servicios.png", alt="") 
+      .shop-body
+        h1.titulo Servicios
+    
+    p.lead
+      | Nuestros Servicios:
+
+    .container
+
+    .row
+      .col-md-4
+        .card
+         img.card-img-top.img-fluid(src='./img/outsourcing.png' alt='Card image cap')
+        .card-body
+         h5.card-title Subcontratacion
+         p.card-text
+          | Una forma eficaz y honesta de encontrar y contratar personas o entidades que se hagan cargo de su actividad o produccion.
+         a.btn.btn-primary(href='#') Ver más
+
+
+      .col-md-4
+        .card
+         img.card-img-top.img-fluid(src='https://www.cronista.com/__export/1437515108129/sites/diarioelcronista/img/2015/07/22/cc220715d002f19.jpg_418415744.jpg' alt='Card image cap')
+        .card-body
+         h5.card-title Consultorias
+         p.card-text
+          | Los servicios de consultoría le ayudan a que sus bienes lleguen al mercado de forma gradual y eficaz.
+         a.btn.btn-primary(href='#') Ver más
+
+      .col-md-4
+        .card
+         img.card-img-top.img-fluid(src='./img/asesoria.png' )
+        .card-body
+         h5.card-title Asesorias
+         p.card-text
+          | Asesoria personalizada en la construcción de tu hoja de vida, recomendaciones para un perfil profesional que se adapte al mercado laboral.
+         a.btn.btn-primary(href='#') Ver más
+
+    hr
+
+  footer
+  .container
+    div(align='center')
+      |
+      a Web de trabajo 
+
+
+

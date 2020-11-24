@@ -1,0 +1,31 @@
+include partials/header
+
+block content
+    if locals.mensajes
+                    .alertas
+                        each categoria in Object.keys(locals.mensajes)
+                            each error in mensajes[categoria]
+                                .alerta(class=`${categoria}`)
+                                    p=error
+    form#idFormulario.form-register(action="/crear-cuenta" method="POST")
+        h2.form__titulo Crea una cuenta
+        .container-inputs
+            input#idNombre.input-48.texto(type="text" name="txtNombre" placeholder="Nombre" maxlength="50", required='')
+            input#idApellido.input-48.texto(type="text" name="txtApellido" placeholder="Apellidos" maxlength="50", required='')
+            input#idDocumento.input-100.texto(type="text" name="txtDocumento" placeholder="Documento" maxlength="50", required='')
+            input#idDireccion.input-100.texto(type="text" name="txtDireccion" placeholder="Dirección" maxlength="50", required='')
+            input#idTelefono.input-100.texto(type="text" name="txtTelefono" placeholder="Telefono" maxlength="10", required='')
+            input#idEdad.input-48.texto(type="number" name="txtEdad" placeholder="Edad" maxlength="100", required='')
+            input#idCorreo.input-100.texto(type="text" name="txtCorreo" placeholder="Email" maxlength="50", required='')            
+            input#idPassword.input-48.texto(type="password" name="txtPassword" placeholder="Contraseña" maxlength="20")
+            #idRespuesta.clsRespuesta
+            p
+                | Estoy de acuerdo con 
+                a(href="#") Terminos y Condiciones
+                
+            p.form__link
+                input#idBoton.btnEnviar.texto(type="submit" name="btnEnviar" value="Registrar")
+                p.form__link
+                    a(href="/iniciar-sesion") Volver a Iniciar Sesión
+        script(src="/JS/javascript.js")
+        script(src="/dist/bundle.js")  
