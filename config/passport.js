@@ -3,34 +3,42 @@ const LocalStrategy = require('passport-local');
 const Usuarios = require('../models/Usuarios');
 
 passport.use(
-    new LocalStrategy({
-        usernameField:'email',
-        passwordField:'password'
+    new LocalStrategy(
+        {
+            usernameField:'email',
+            passwordField:'password'
 
-    },
+        },
 
-    async(email, password, done)=>{
+        async(email, password, done)=>{
 
-        try {
+            try {
+              const usuario = await Usuarios.findOne(
+                  {
+                      where:{email:email,
+                            activo:1
+                        }
+                  }
+              );
+  
+              if(!usuario.verificarPassword(password)){
+                  return done(null, false, {
+                      message: 'Password Incorrecto!'
+                  });
+              }
+              return done(null, usuario);
 
-            const usuario = await Usuarios.findOne(
-                {
-                    where:{email:email}
-                }
-            );
-            if(!usuario.verificarPassword(password)){
+            } catch (error) {
                 return done(null, false,{
-                    message:'Password Incorrecto!'
+                    message: 'Cuenta no existe!'
                 });
             }
-            return done(null, usuario);
-        } catch (error) {
-            return done(null, false, {
-                message:'Cuenta no Existe!'
-            });
+
         }
-    }
+
+
     )
+
 )
 
 passport.serializeUser((usuario, callback)=>{

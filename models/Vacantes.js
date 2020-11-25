@@ -3,11 +3,16 @@ const slug = require('slug');
 const shortid = require('shortid');
 const db = require('../config/db');
 const usuarios = require('./Usuarios');
+const { Sequelize } = require('../config/db');
 
 const vacantes = db.define('vacantes',{
     codigo:{
         type:sequelize.INTEGER,
-        primaryKey:true
+        primaryKey:true,
+        unique:{
+            args: true,
+            msg:'El codigo ya se encuentra registrado!'
+        }
     },
     nombre:{
         type:sequelize.STRING(60),

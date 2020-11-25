@@ -1,3 +1,4 @@
+const nodemailer = require('nodemailer');
 const express = require('express');
 const router = express.Router();
 const { body } = require('express-validator');
@@ -51,12 +52,14 @@ module.exports = function () {
     router.post('/perfil/:id', authController.usuarioAutenticado, UsuariosController.editarPerfil);
     // Post Login
     router.post('/iniciar-sesion', authController.autenticarUsuario);
+    router.get('/confirmar/:correo', UsuariosController.confirmarCuenta);
     //Cerrar sesión
     router.get('/cerrar-sesion', authController.cerrarSesion);
     //restablecer password
     router.get('/restablecer', UsuariosController.formRestablecerPassword);
     router.post('/restablecer', authController.enviarToken);
-    router.get('/restablecer', authController.resetPassword);
+    router.get('/restablecer/:token', authController.resetPassword);
+    router.post('/restablecer/:token', authController.actualizarPassword);
     //Método de Crear Cuenta
     router.get('/crear-cuenta', UsuariosController.formCrearCuenta);
     //Metodo de inserción crear cuenta
@@ -67,8 +70,7 @@ module.exports = function () {
     body('txtDireccion').not().isEmpty().trim().escape(),
     body('txtTelefono').not().isEmpty().trim().escape(),
     body('txtEdad').not().isEmpty().trim().escape(),
-    body('txtCorreo').not().isEmpty().trim().escape(),
-    body('txtUsuario').not().isEmpty().trim().escape(),
+    body('txtCorreo').not().isEmpty().trim().escape(),    
     body('txtPassword').not().isEmpty().trim().escape(),
     UsuariosController.crearCuenta);    
     return router;

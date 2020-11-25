@@ -1,3 +1,4 @@
+//const nodemailer = require('nodemailer');
 const express = require('express');
 const { request, response } = require('express');
 const routes = require('./routes');
@@ -8,6 +9,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser=require('cookie-parser');
 const passport = require('./config/passport');
+require('dotenv').config({path:'variables.env'});
 
 require('./models/Vacantes')
 require('./models/Requisitos')

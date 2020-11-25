@@ -125,13 +125,6 @@ body {
 .error p {
   color: red!important;
 }
-.correcto {
-  color: green;
-  background-color: rgb(201, 245, 201);
-  border: 1px solid green;
-}
-.correcto p {
-  color: green;
-}
+
 
   

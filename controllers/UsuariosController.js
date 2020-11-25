@@ -1,6 +1,7 @@
 const { request } = require("express");
 const Usuarios = require('../models/Usuarios');
 const slug = require('slug');
+const enviarEmail = require('../handlers/email');
 
 exports.formCrearCuenta =(request, response)=>{
     response.render('Registro',{
@@ -40,7 +41,7 @@ exports.formPerfil = async (request, response)=>{
 
 
 exports.crearCuenta = async (request, response)=>{
-    console.log(request.body);
+    //console.log(request.body);
     const { txtNombre } = request.body;
     const { txtApellido } = request.body;
     const { txtDocumento } = request.body;
@@ -61,9 +62,22 @@ exports.crearCuenta = async (request, response)=>{
         email: txtCorreo,        
         password: txtPassword
       });
-      response.redirect('/iniciar-sesion');
+
+      const confirmarUrl =`http://${request.headers.host}/confirmar/${txtCorreo}`;
+      const usuario ={
+        email: txtCorreo
+     }
+     await enviarEmail.enviar({
+        usuario,
+        subject: 'Confirma tu Cuenta de Proyectos',
+        confirmarUrl,
+        archivo: 'confirmar-cuenta'
+    });
+    request.flash('error','enviamos un correo confirma tu cuenta');
+    response.redirect('/iniciar-sesion');
+
    } catch (error) {
-      request.flash('error', error.errors.map(error => error.message));
+      //request.flash('error', error.errors.map(error => error.message));
       response.render('registro',{
          mensajes: request.flash(),
          nombrePagina:'Crear Cuenta Plataforma',
@@ -162,3 +176,24 @@ exports.formRestablecerPassword = (request, response)=>{
       nombrePagina: 'Restablecer tu Password'
    })
 }
+
+exports.confirmarCuenta =async (request, response)=>{
+    //response.json(request.params.correo);
+ 
+    const usuario = await Usuarios.findOne({
+       where:{
+          email:request.params.correo
+       }
+    });
+    if(!usuario){
+       request.flash('error', 'No existe la cuenta');
+       response.redirect('/crear-cuenta');
+    }
+ 
+    usuario.activo =1;
+ 
+    await usuario.save();
+ 
+    request.flash('error','Cuenta Activa Correctamente');
+    response.redirect('/iniciar-sesion');
+ }
