@@ -15,6 +15,5 @@ const Requisitos = db.define('requisitos',{
 Requisitos.belongsTo(Vacantes);
 
 //Proyectos.hasMany(Tareas);
-
 module.exports = Requisitos;
 
